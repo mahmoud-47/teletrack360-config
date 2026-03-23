@@ -1,5 +1,5 @@
 tracing:
-  url: http://localhost:4317
+  url: ${TRACING_URL:http://localhost:4317}
 
 jwt:
   secret: ${JWT_SECRET:207c11ed092814462f1c6f5713f747770183a6513f8558cfbcbff824a2ba0820} # dev secret
