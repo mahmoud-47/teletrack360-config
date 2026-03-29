@@ -55,6 +55,11 @@ spring:
         queue-capacity: ${EXECUTOR_QUEUE_CAPACITY:100}
         keep-alive: ${EXECUTOR_KEEP_ALIVE:60s}
 
+management:
+  health:
+    mail:
+      enabled: false
+
 eureka:
   client:
     service-url:
