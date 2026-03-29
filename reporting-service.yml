@@ -19,6 +19,21 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+  task:
+    execution:
+      pool:
+        core-size: ${EXECUTOR_CORE_SIZE:4}
+        max-size: ${EXECUTOR_MAX_SIZE:16}
+        queue-capacity: ${EXECUTOR_QUEUE_CAPACITY:100}
+        keep-alive: ${EXECUTOR_KEEP_ALIVE:60s}
+
+server:
+  tomcat:
+    threads:
+      max: ${TOMCAT_MAX_THREADS:200}
+      min-spare: ${TOMCAT_MIN_SPARE_THREADS:10}
+    accept-count: ${TOMCAT_ACCEPT_COUNT:100}
+    max-connections: ${TOMCAT_MAX_CONNECTIONS:8192}
 
 eureka:
   client:
