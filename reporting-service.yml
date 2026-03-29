@@ -1,17 +1,21 @@
 server:
   port: 8084
+  tomcat:
+    threads:
+      max: ${TOMCAT_MAX_THREADS:200}
+      min-spare: ${TOMCAT_MIN_SPARE_THREADS:10}
+    accept-count: ${TOMCAT_ACCEPT_COUNT:100}
+    max-connections: ${TOMCAT_MAX_CONNECTIONS:8192}
 
 spring:
   application:
     name: reporting-service
-
   data:
     mongodb:
       uri: mongodb://${MONGO_USERNAME:admin}:${MONGO_PASSWORD:admin}@${MONGO_HOST:localhost}:27017/teletrack_reports?authSource=admin
     redis:
       host: ${REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
-
   kafka:
     bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     consumer:
@@ -27,14 +31,6 @@ spring:
         queue-capacity: ${EXECUTOR_QUEUE_CAPACITY:100}
         keep-alive: ${EXECUTOR_KEEP_ALIVE:60s}
 
-server:
-  tomcat:
-    threads:
-      max: ${TOMCAT_MAX_THREADS:200}
-      min-spare: ${TOMCAT_MIN_SPARE_THREADS:10}
-    accept-count: ${TOMCAT_ACCEPT_COUNT:100}
-    max-connections: ${TOMCAT_MAX_CONNECTIONS:8192}
-
 eureka:
   client:
     service-url:
@@ -44,7 +40,6 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${random.value}
-
 
 ai:
   service:
